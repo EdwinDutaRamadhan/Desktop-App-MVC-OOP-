@@ -11,8 +11,7 @@ package Model;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class UserModel {
-    private String id, nama, jenis, alamat;
-    private int harga;
+    private String id, nama, jenis, harga, stok;
 
     public String getId() {
         return id;
@@ -38,21 +37,23 @@ public class UserModel {
         this.jenis = jenis;
     }
 
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
-
-    public int getHarga() {
+    public String getHarga() {
         return harga;
     }
 
-    public void setHarga(int harga) {
+    public void setHarga(String harga) {
         this.harga = harga;
     }
+
+    public String getStok() {
+        return stok;
+    }
+
+    public void setStok(String stok) {
+        this.stok = stok;
+    }
+    
+    
     
     
     

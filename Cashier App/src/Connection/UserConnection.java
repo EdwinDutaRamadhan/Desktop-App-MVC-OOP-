@@ -1,8 +1,8 @@
 package Connection;
 
+import Model.UserModel;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
-import Data.UrlData;
 
 public class UserConnection {
     public Connection koneksi = null;

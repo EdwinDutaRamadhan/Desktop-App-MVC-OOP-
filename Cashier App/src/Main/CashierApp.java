@@ -6,19 +6,17 @@
 package Main;
 
 import Connection.UserConnection;
+import Data.UserData;
+import View.AdminInputCashier;
 
-/**
- *
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
 public class CashierApp {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UserConnection koneksi = new UserConnection();
-        koneksi.getConnection();
+//        new AdminInputCashier().setVisible(true);
+          
     }
     
 }

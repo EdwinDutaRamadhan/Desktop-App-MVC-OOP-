@@ -33,9 +33,9 @@ public class UserData implements Interface{
     
     @Override
     public List<UserModel> getAll() {
-        List<UserModel> list = new ArrayList<>();
-        try {
-                        
+        List<UserModel> ls = new ArrayList<>();
+        
+        try {         
             PreparedStatement ps = koneksi.prepareStatement("SELECT * FROM tbl_produk");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -43,14 +43,17 @@ public class UserData implements Interface{
                 cashier.setId(rs.getString(1));
                 cashier.setNama(rs.getString(2));
                 cashier.setJenis(rs.getString(3));
-                cashier.setHarga(rs.getInt(4));
-                cashier.setAlamat(rs.getString(5));
+                cashier.setHarga(rs.getString(4));
+                cashier.setStok(rs.getString(5));
+                ls.add(cashier);
+                System.out.println(cashier);
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("get all failed");
         }
-        return null;
+        return ls;
         
     }
 
