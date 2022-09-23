@@ -21,6 +21,7 @@ public class AdminInputCashier extends javax.swing.JFrame {
     
     public AdminInputCashier() {
         initComponents();
+        startUpProgram();
     }
     private void startUpProgram(){
         String [] defaultTable = {"ID", "Nama", "Jenis", "Harga", "Stok"};
@@ -40,7 +41,7 @@ public class AdminInputCashier extends javax.swing.JFrame {
             DataProduk[i][3] = ls.get(i).getHarga();
             DataProduk[i][4] = ls.get(i).getStok();
         }
-        System.out.println(DataProduk[0][0]);
+
         tableProduk.setModel(new DefaultTableModel(DataProduk, new String[]{"ID", "Nama", "Jenis", "Harga", "Stok"}));
     }
     
@@ -51,6 +52,12 @@ public class AdminInputCashier extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProduk = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        comboBoxId1 = new javax.swing.JComboBox();
+        comboBoxId2 = new javax.swing.JComboBox();
+        comboBoxId3 = new javax.swing.JComboBox();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,13 +93,41 @@ public class AdminInputCashier extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTextField1.setText("ID");
+
+        comboBoxId1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Jenis", "Makanan", "Minuman", "Cemilan", "Permen" }));
+
+        comboBoxId2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Produk", "Indomie Goreng", "Indomie Rebus", "Indomie Kuliner Indonesia", "Indomie Real Meat", "Indomie Premium Collection", "Indomie Hype Abis", "Indomie Taste of Asia", "Indomie My Noodlez", "Indomie Chatz Mie" }));
+
+        comboBoxId3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Produk", "Indomie" }));
+
+        jTextField2.setText("Harga");
+
+        jTextField3.setText("Stok");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboBoxId1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboBoxId3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboBoxId2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,7 +135,15 @@ public class AdminInputCashier extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(289, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxId1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxId3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxId2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,8 +181,14 @@ public class AdminInputCashier extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox comboBoxId1;
+    private javax.swing.JComboBox comboBoxId2;
+    private javax.swing.JComboBox comboBoxId3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable tableProduk;
     // End of variables declaration//GEN-END:variables
 }

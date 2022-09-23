@@ -46,7 +46,6 @@ public class UserData implements Interface{
                 cashier.setHarga(rs.getString(4));
                 cashier.setStok(rs.getString(5));
                 ls.add(cashier);
-                System.out.println(cashier);
             }
             
         } catch (SQLException ex) {

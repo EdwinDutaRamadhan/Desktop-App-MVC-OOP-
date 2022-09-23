@@ -5,8 +5,6 @@
  */
 package Main;
 
-import Connection.UserConnection;
-import Data.UserData;
 import View.AdminInputCashier;
 
 public class CashierApp {
@@ -16,7 +14,7 @@ public class CashierApp {
      */
     public static void main(String[] args) {
 //        new AdminInputCashier().setVisible(true);
-          
+          new AdminInputCashier().setVisible(true);
     }
     
 }
