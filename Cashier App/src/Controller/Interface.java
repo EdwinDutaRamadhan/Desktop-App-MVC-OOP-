@@ -14,5 +14,6 @@ import java.util.List;
  */
 public interface Interface {
     public List<UserModel> getAll();
-    
+    public boolean insertData(UserModel cashier);
+    public boolean deleteData(UserModel cashier);
 }
