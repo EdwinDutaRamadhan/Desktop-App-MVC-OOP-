@@ -8,6 +8,7 @@ package Data;
 
 import Connection.UserConnection;
 import Controller.Interface;
+import Model.ProdukModel;
 import Model.UserModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +25,7 @@ import java.util.logging.Logger;
  */
 public class UserData implements Interface{
     UserModel cashier;
-    
+    ProdukModel product;
     private Connection koneksi = null;
     
     public UserData(){
@@ -93,5 +94,48 @@ public class UserData implements Interface{
         }
         return result;
     }
+
+    @Override
+    public boolean tambahData(UserModel cashier) {
+        boolean result = false;
+        String query = "UPDATE tbl_produk SET nama=?, jenis=?, produk=?, harga=?, stok=? WHERE id=?";
+        try {
+            PreparedStatement ps = koneksi.prepareStatement(query);
+            ps.setString(6, cashier.getId());
+            ps.setString(1, cashier.getJenis());
+            ps.setString(2, cashier.getProduk());
+            ps.setString(3, cashier.getNama());
+            ps.setString(4, cashier.getHarga());
+            ps.setString(5, cashier.getStok());
+            ps.executeUpdate();
+            result = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    @Override
+    public List<ProdukModel> getMakanan() {
+        List<ProdukModel> ls = new ArrayList<>();
+        
+        try {         
+            PreparedStatement ps = koneksi.prepareStatement("SELECT * FROM data_makanan");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                product = new ProdukModel();
+                product.setMakananTemp(rs.getString(2));
+                ls.add(product);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ls;
+    }
+
+   
+
+    
 
 }

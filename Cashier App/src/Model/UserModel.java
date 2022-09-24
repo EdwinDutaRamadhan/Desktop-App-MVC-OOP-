@@ -11,7 +11,6 @@ public class UserModel {
         this.produk = produk;
     }
     
-    
     public String getId() {
         return id;
     }

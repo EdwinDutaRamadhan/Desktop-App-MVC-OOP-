@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.ProdukModel;
 import Model.UserModel;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import java.util.List;
  */
 public interface Interface {
     public List<UserModel> getAll();
+    public List<ProdukModel> getMakanan();
     public boolean insertData(UserModel cashier);
     public boolean deleteData(UserModel cashier);
+    public boolean tambahData(UserModel cashier);
 }

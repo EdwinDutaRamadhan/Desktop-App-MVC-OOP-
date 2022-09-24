@@ -1,9 +1,13 @@
 package Model;
 
 public class ProdukModel {
-    private String makanan[] = {"Pilih Produk", "Indomie", "Sarimi", "Sedap"};
+    //{"Pilih Produk", "Indomie", "Sarimi", "Sedap"};
+    private String makanan[];
+    private String makananTemp;
+    private String jenis[] = {"Pilih Jenis", "Makanan", "Minuman", "Cemilan", "Permen"};
     private String indomie[] = {"Pilih Produk", "Indomie Goreng", "Indomie Rebus", "Indomie Kuliner Indonesia", "Indomie Real Meat", "Indomie Premium Collection", "Indomie Hype Abis", "Indomie Taste of Asia", "Indomie My Noodlez", "Indomie Chatz Mie"};
     private String defaultIndex[] = {"Pilih Produk"};
+    private String defaultJenis[] = {"Pilih Jenis"};
     private String idJenis, idProduk,idNama;
     public String[] getMakanan() {
         return makanan;
@@ -41,6 +45,27 @@ public class ProdukModel {
         this.idNama = idNama;
     }
 
+    public String[] getDefaultJenis() {
+        return defaultJenis;
+    }
+
+    public String[] getJenis() {
+        return jenis;
+    }
+
+    public void setMakanan(String[] makanan) {
+        this.makanan = makanan;
+    }
+
+    public String getMakananTemp() {
+        return makananTemp;
+    }
+
+    public void setMakananTemp(String makananTemp) {
+        this.makananTemp = makananTemp;
+    }
+    
+    
     
     
 }
