@@ -1,15 +1,8 @@
 package Model;
 
 public class UserModel {
-    private String id, nama, jenis, produk, harga, stok;
+    private String id, jenis, varian,  harga, stok;
 
-    public String getProduk() {
-        return produk;
-    }
-
-    public void setProduk(String produk) {
-        this.produk = produk;
-    }
     
     public String getId() {
         return id;
@@ -17,14 +10,6 @@ public class UserModel {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
     }
 
     public String getJenis() {
@@ -49,6 +34,14 @@ public class UserModel {
 
     public void setStok(String stok) {
         this.stok = stok;
+    }
+
+    public String getVarian() {
+        return varian;
+    }
+
+    public void setVarian(String varian) {
+        this.varian = varian;
     }
     
     

@@ -30,55 +30,43 @@ public class AdminInputCashier extends javax.swing.JFrame {
     public AdminInputCashier() {
         initComponents();
         startUpProgram();
+        
     }
+    
+    
     private void startUpProgram(){
-        String [] defaultTable = {"ID", "Jenis", "Produk","Nama", "Harga", "Stok"};
+        String[] jenisProduk = {"Pilih Produk", "Indomie Goreng", "Indomie Kuah", "Indomie Kuliner Indonesia", "Indomie Rreal Meat","Indomie Premium Collection","Indomie Hype Abis","Indomie Taste of Asia","Indomie My Noodlez","Indomie Chatz Mie"};
+        produkModel.setJenis(jenisProduk);
+        comboBoxProdukParent.setModel(new DefaultComboBoxModel(produkModel.getJenis()));
+        String [] defaultTable = {"ID", "Jenis", "Varian","Harga", "Stok"};
         model = new DefaultTableModel(defaultTable, 0);
         tableProduk.setModel(model);
-        comboBoxJenis.setModel(new DefaultComboBoxModel(produkModel.getJenis()));
         displayDataProduk();
         tambahan.setVisible(false);
         tambahanStok.setVisible(false);
-        loadMakanan();
     }
-    private void loadMakanan(){
-        String data[] = null;
-        List<ProdukModel> ls = new ArrayList<ProdukModel>();
-        ls = new UserData().getMakanan();
-        String DataProduk[][] = new String[ls.size()][2];
-        for( int i = 0; i < ls.size(); i++ ){
-            DataProduk[i][1] = ls.get(i).getMakananTemp();
-            System.out.println(DataProduk[i][1]);
-        }
-        for(int j = 0; j < 10; j++){
-            data[j] = DataProduk[j][1];
-        }
-        System.out.println(data);
-    }
+    
     private void displayDataProduk(){
         List<UserModel> ls = new ArrayList<UserModel>();
         ls = new UserData().getAll();
-        String DataProduk[][] = new String[ls.size()][6];
+        String DataProduk[][] = new String[ls.size()][5];
         for( int i = 0; i < ls.size(); i++ ){
             DataProduk[i][0] = ls.get(i).getId();
             DataProduk[i][1] = ls.get(i).getJenis();
-            DataProduk[i][2] = ls.get(i).getProduk();
-            DataProduk[i][3] = ls.get(i).getNama();
-            DataProduk[i][4] = ls.get(i).getHarga();
-            DataProduk[i][5] = ls.get(i).getStok();
+            DataProduk[i][2] = ls.get(i).getVarian();
+            DataProduk[i][3] = ls.get(i).getHarga();
+            DataProduk[i][4] = ls.get(i).getStok();
         }
 
-        tableProduk.setModel(new DefaultTableModel(DataProduk, new String[]{"ID", "Jenis", "Produk","Nama", "Harga", "Stok"}));
+        tableProduk.setModel(new DefaultTableModel(DataProduk, new String[]{"ID", "Jenis", "Varian","Harga", "Stok"}));
     }
 
     private void reset(){
         idTextField.setText("ID");
-        comboBoxJenis.setSelectedIndex(0);
         comboBoxProdukParent.setSelectedIndex(0);
         comboBoxProdukChild.setSelectedIndex(0);
         hargaTextField.setText("Harga");
         stokTextField.setText("Stok");
-        comboBoxJenis.setModel(new DefaultComboBoxModel(produkModel.getJenis()));
         tambahan.setVisible(false);
         tambahanStok.setVisible(false);
         tambahanStok.setText("0");
@@ -91,7 +79,6 @@ public class AdminInputCashier extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProduk = new javax.swing.JTable();
         idTextField = new javax.swing.JTextField();
-        comboBoxJenis = new javax.swing.JComboBox();
         comboBoxProdukChild = new javax.swing.JComboBox();
         comboBoxProdukParent = new javax.swing.JComboBox();
         hargaTextField = new javax.swing.JTextField();
@@ -110,13 +97,13 @@ public class AdminInputCashier extends javax.swing.JFrame {
 
         tableProduk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Jenis", "Produk", "Nama", "Harga", "Stok"
+                "ID", "Jenis", "Varian", "Harga", "Stok"
             }
         ));
         tableProduk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,13 +132,6 @@ public class AdminInputCashier extends javax.swing.JFrame {
 
         idTextField.setEditable(false);
         idTextField.setText("ID");
-
-        comboBoxJenis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Jenis" }));
-        comboBoxJenis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxJenisActionPerformed(evt);
-            }
-        });
 
         comboBoxProdukChild.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Produk" }));
         comboBoxProdukChild.addActionListener(new java.awt.event.ActionListener() {
@@ -249,11 +229,9 @@ public class AdminInputCashier extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(comboBoxJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBoxProdukParent, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(comboBoxProdukParent, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboBoxProdukChild, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBoxProdukChild, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(hargaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -274,7 +252,6 @@ public class AdminInputCashier extends javax.swing.JFrame {
                     .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hargaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stokTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxProdukParent, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxProdukChild, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -289,64 +266,76 @@ public class AdminInputCashier extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboBoxJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxJenisActionPerformed
-        //Pilih Jenis, Makanan, Minuman, Cemilan, Permen
-        
-        switch(comboBoxJenis.getSelectedIndex()){
-            case 0 :
-                //tidak pilih
-                comboBoxProdukParent.setModel(new DefaultComboBoxModel(produkModel.getDefaultIndex()));
-                break;
-            case 1 :
-                //makanan
-                comboBoxProdukParent.setModel(new DefaultComboBoxModel(produkModel.getMakanan()));                
-                break;
-            case 2 :
-                //minuman
-                break;
-            case 3 :
-                //cemilan
-                break;
-            case 4 :
-                //permen
-                break;
-            default :
-        }
-        if(comboBoxJenis.getSelectedIndex() > 0){
-            produkModel.setIdJenis(new Algoritm().jenisIdGenerate(comboBoxJenis.getSelectedIndex()));
-            idTextField.setText(produkModel.getIdJenis());
-        }
-    }//GEN-LAST:event_comboBoxJenisActionPerformed
-
     private void comboBoxProdukParentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxProdukParentActionPerformed
+        
         switch(comboBoxProdukParent.getSelectedIndex()){
             case 0 :
                 comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getDefaultIndex()));
                 break;
             case 1 :
+                //indomie goreng
+                produkModel.setIndomie(produkModel.indomieGoreng);
                 comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
-                
+                break;
+            case 2 :
+                //Indomie Kua
+                produkModel.setIndomie(produkModel.indomieKuah);
+                comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
+                break;
+            case 3 :
+                //Indomie Kuliner 
+                produkModel.setIndomie(produkModel.indomieKulinerIndonesia);
+                comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
+                break;
+            case 4 :
+                //Indomie Real Meat
+                produkModel.setIndomie(produkModel.indomieRealMeat);
+                comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
+                break;
+            case 5 :
+                //Indomie Premium Collection
+                produkModel.setIndomie(produkModel.indomiePremiumCollection);
+                comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
+                break;
+            case 6 :
+                //Indomie Hype Abis
+                produkModel.setIndomie(produkModel.indomieHypeAbis);
+                comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
+                break;
+            case 7 :
+                //Indomie Taste of Asia
+                produkModel.setIndomie(produkModel.indomieTasteofAsia);
+                comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
+                break;
+            case 8 :
+                //Indomie My Noodlez
+                produkModel.setIndomie(produkModel.indomieMyNoodlez);
+                comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
+                break;
+            case 9 :
+                //Indomie Chatz Mie
+                produkModel.setIndomie(produkModel.indomieChatzMie);
+                comboBoxProdukChild.setModel(new DefaultComboBoxModel(produkModel.getIndomie()));
                 break;
         }
         if(comboBoxProdukParent.getSelectedIndex() > 0){
             produkModel.setIdProduk(new Algoritm().parentIdGenerate(comboBoxProdukParent.getSelectedIndex()));
-            idTextField.setText(produkModel.getIdJenis() + produkModel.getIdProduk());
+            idTextField.setText(produkModel.getIdProduk());
         }
     }//GEN-LAST:event_comboBoxProdukParentActionPerformed
 
     private void comboBoxProdukChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxProdukChildActionPerformed
         if(comboBoxProdukChild.getSelectedIndex() > 0){
             produkModel.setIdNama(new Algoritm().childIdGenerate(comboBoxProdukChild.getSelectedIndex()));
-            idTextField.setText(produkModel.getIdJenis()+produkModel.getIdProduk()+produkModel.getIdNama());
+            idTextField.setText(produkModel.getIdProduk()+produkModel.getIdNama());
         }
     }//GEN-LAST:event_comboBoxProdukChildActionPerformed
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
         UserModel insertCash = new UserModel();
         insertCash.setId(idTextField.getText());
-        insertCash.setNama((String) comboBoxProdukChild.getSelectedItem());
-        insertCash.setJenis((String) comboBoxJenis.getSelectedItem());
-        insertCash.setProduk((String) comboBoxProdukParent.getSelectedItem());
+        insertCash.setJenis((String) comboBoxProdukParent.getSelectedItem());
+        insertCash.setVarian((String) comboBoxProdukChild.getSelectedItem());
         insertCash.setHarga(hargaTextField.getText());
         insertCash.setStok(stokTextField.getText());
         if(data.insertData(insertCash)){
@@ -373,12 +362,10 @@ public class AdminInputCashier extends javax.swing.JFrame {
     private void tableProdukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProdukMouseClicked
        int baris = tableProduk.getSelectedRow();
        idTextField.setText(tableProduk.getValueAt(baris, 0).toString());
-//       comboBoxJenis.setSelectedItem(tableProduk.getValueAt(baris, 1));
-//       comboBoxProdukParent.setSelectedItem(tableProduk.getValueAt(baris, 2));
-//       comboBoxProdukChild.setSelectedItem(tableProduk.getValueAt(baris, 3));
-       hargaTextField.setText(tableProduk.getValueAt(baris, 4).toString());
-       stokTextField.setText(tableProduk.getValueAt(baris, 5).toString());
-       comboBoxJenis.setModel(new DefaultComboBoxModel(produkModel.getDefaultJenis()));
+       comboBoxProdukParent.setSelectedItem(tableProduk.getValueAt(baris, 1));
+       comboBoxProdukChild.setSelectedItem(tableProduk.getValueAt(baris, 2));
+       hargaTextField.setText(tableProduk.getValueAt(baris, 3).toString());
+       stokTextField.setText(tableProduk.getValueAt(baris, 4).toString());
        tambahan.setVisible(true);
        tambahanStok.setVisible(true);
     }//GEN-LAST:event_tableProdukMouseClicked
@@ -392,8 +379,7 @@ public class AdminInputCashier extends javax.swing.JFrame {
         int stok = stokTemp + stokTambahan;
         updateCash.setId(tableProduk.getValueAt(baris, 0).toString());
         updateCash.setJenis(tableProduk.getValueAt(baris, 1).toString());
-        updateCash.setProduk(tableProduk.getValueAt(baris, 2).toString());
-        updateCash.setNama(tableProduk.getValueAt(baris, 3).toString());
+        updateCash.setVarian(tableProduk.getValueAt(baris, 2).toString());
         updateCash.setHarga(hargaTextField.getText());
         String stokString = "" + stok;
         updateCash.setStok(stokString);
@@ -442,7 +428,6 @@ public class AdminInputCashier extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox comboBoxJenis;
     private javax.swing.JComboBox comboBoxProdukChild;
     private javax.swing.JComboBox comboBoxProdukParent;
     private javax.swing.JButton delete;

@@ -43,10 +43,9 @@ public class UserData implements Interface{
                 cashier = new UserModel();
                 cashier.setId(rs.getString(1));
                 cashier.setJenis(rs.getString(2));
-                cashier.setProduk(rs.getString(3));
-                cashier.setNama(rs.getString(4));
-                cashier.setHarga(rs.getString(5));
-                cashier.setStok(rs.getString(6));
+                cashier.setVarian(rs.getString(3));
+                cashier.setHarga(rs.getString(4));
+                cashier.setStok(rs.getString(5));
                 ls.add(cashier);
             }
             
@@ -63,14 +62,13 @@ public class UserData implements Interface{
         boolean result = false;
         
         try {
-            PreparedStatement ps = koneksi.prepareStatement("INSERT INTO tbl_produk" + " VALUES (?,?,?,?,?,?)");
+            PreparedStatement ps = koneksi.prepareStatement("INSERT INTO tbl_produk" + " VALUES (?,?,?,?,?)");
             
             ps.setString(1, cashier.getId());
             ps.setString(2, cashier.getJenis());
-            ps.setString(3, cashier.getProduk());
-            ps.setString(4, cashier.getNama());
-            ps.setString(5, cashier.getHarga());
-            ps.setString(6, cashier.getStok());
+            ps.setString(3, cashier.getVarian());
+            ps.setString(4, cashier.getHarga());
+            ps.setString(5, cashier.getStok());
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {
@@ -98,15 +96,14 @@ public class UserData implements Interface{
     @Override
     public boolean tambahData(UserModel cashier) {
         boolean result = false;
-        String query = "UPDATE tbl_produk SET nama=?, jenis=?, produk=?, harga=?, stok=? WHERE id=?";
+        String query = "UPDATE tbl_produk SET jenis=?, varian=?, harga=?, stok=? WHERE id=?";
         try {
             PreparedStatement ps = koneksi.prepareStatement(query);
-            ps.setString(6, cashier.getId());
+            ps.setString(5, cashier.getId());
             ps.setString(1, cashier.getJenis());
-            ps.setString(2, cashier.getProduk());
-            ps.setString(3, cashier.getNama());
-            ps.setString(4, cashier.getHarga());
-            ps.setString(5, cashier.getStok());
+            ps.setString(2, cashier.getVarian());
+            ps.setString(3, cashier.getHarga());
+            ps.setString(4, cashier.getStok());
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {
@@ -115,24 +112,9 @@ public class UserData implements Interface{
         return result;
     }
 
-    @Override
-    public List<ProdukModel> getMakanan() {
-        List<ProdukModel> ls = new ArrayList<>();
-        
-        try {         
-            PreparedStatement ps = koneksi.prepareStatement("SELECT * FROM data_makanan");
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                product = new ProdukModel();
-                product.setMakananTemp(rs.getString(2));
-                ls.add(product);
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return ls;
-    }
+
+  
+
 
    
 
