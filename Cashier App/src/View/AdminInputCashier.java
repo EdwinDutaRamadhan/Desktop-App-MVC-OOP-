@@ -9,10 +9,9 @@ import Algoritm.Algoritm;
 import Data.UserData;
 import Model.ProdukModel;
 import Model.UserModel;
+import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -95,6 +94,7 @@ public class AdminInputCashier extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
+        tableProduk.setAutoCreateRowSorter(true);
         tableProduk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -147,9 +147,27 @@ public class AdminInputCashier extends javax.swing.JFrame {
             }
         });
 
+        hargaTextField.setForeground(new java.awt.Color(153, 153, 153));
         hargaTextField.setText("Harga");
+        hargaTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                hargaTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                hargaTextFieldFocusLost(evt);
+            }
+        });
 
+        stokTextField.setForeground(new java.awt.Color(153, 153, 153));
         stokTextField.setText("Stok");
+        stokTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                stokTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                stokTextFieldFocusLost(evt);
+            }
+        });
 
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +224,7 @@ public class AdminInputCashier extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tambahanStok.setForeground(new java.awt.Color(153, 153, 153));
         tambahanStok.setText("0");
         tambahanStok.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
@@ -395,6 +414,33 @@ public class AdminInputCashier extends javax.swing.JFrame {
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         reset();
     }//GEN-LAST:event_tambahActionPerformed
+
+    private void hargaTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hargaTextFieldFocusGained
+        if(hargaTextField.getText().equals("Harga")){
+            hargaTextField.setText("");
+        }
+    }//GEN-LAST:event_hargaTextFieldFocusGained
+
+    private void hargaTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hargaTextFieldFocusLost
+       if(hargaTextField.getText().equals("")){
+            hargaTextField.setText("Harga");
+            hargaTextField.setForeground(new Color(153,153,153));
+       }
+    }//GEN-LAST:event_hargaTextFieldFocusLost
+
+    private void stokTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stokTextFieldFocusGained
+        if(stokTextField.getText().equals("Stok")){
+            stokTextField.setText("");
+            stokTextField.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_stokTextFieldFocusGained
+
+    private void stokTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stokTextFieldFocusLost
+         if(stokTextField.getText().equals("")){
+            stokTextField.setText("Stok");
+            stokTextField.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_stokTextFieldFocusLost
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

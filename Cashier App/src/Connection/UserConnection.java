@@ -1,7 +1,7 @@
 package Connection;
 
 import Model.UserModel;
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.mysql.cj.jdbc.MysqlDataSource;
 import java.sql.Connection;
 
 public class UserConnection {
