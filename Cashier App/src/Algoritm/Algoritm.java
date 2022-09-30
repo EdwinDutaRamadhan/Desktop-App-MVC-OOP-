@@ -4,16 +4,6 @@ import Controller.AlgoritmInterface;
 import Model.ProdukModel;
 
 public class Algoritm implements AlgoritmInterface {
-    @Override
-    public String jenisIdGenerate(int idJenis) {
-        String value;
-        if(idJenis >= 10){
-            value = "" + idJenis;
-        }else{
-            value = "0" + idJenis;
-        }
-        return value;
-    }
 
     @Override
     public String parentIdGenerate(int idProduk) {

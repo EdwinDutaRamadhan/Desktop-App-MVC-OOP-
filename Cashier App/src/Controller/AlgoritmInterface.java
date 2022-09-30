@@ -12,7 +12,6 @@ import Model.ProdukModel;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public interface AlgoritmInterface {
-    public String jenisIdGenerate(int idJenis);
     public String parentIdGenerate(int idProduk);
     public String childIdGenerate(int idNama);
 }
